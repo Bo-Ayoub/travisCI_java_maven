@@ -29,6 +29,17 @@ public class ProduitService {
     private boolean nomProduitExiste(String nom) {
         return produits.stream().anyMatch(produit -> produit.getNom().equals(nom));
     }
+    
+    // Read
+    public Produit trouverProduitParId(long id) {
+        for (Produit produit : produits) {
+            if (produit.getId() == id) {
+                return produit;
+            }
+        }
+        throw new IllegalArgumentException("Produit non trouvé avec l'ID : " + id);
+
+    }
 
   
 }
