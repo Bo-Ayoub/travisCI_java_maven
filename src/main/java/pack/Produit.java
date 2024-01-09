@@ -1,3 +1,4 @@
+package pack;
 public class Produit {
     private long id;
     private String nom;
