@@ -9,6 +9,11 @@ public class ProduitService {
     public ProduitService() {
         this.produits = new ArrayList<>();
     }
+    
+    // get all 
+    public List<Produit> getAllProduct() {
+        return new ArrayList<>(this.produits);
+    }
 
     
     // Create
@@ -60,14 +65,15 @@ public class ProduitService {
     }
     //delete
     public void deleteProduit(Long id) {
-    	Produit produit;
+    	
         for (Produit _produit : produits) {
-            if (produit.getId()==id) {
-            	produit=_produit;
+            if (_produit.getId()==id) {
+            	
+                produits.remove(_produit); 
                 break;
+                
             }
         }
-        produits.remove(produit); 
 
     }
 

@@ -1,6 +1,15 @@
 package pack;
 public class Produit {
-    private long id;
+    public Produit(long id, String nom, double prix, int quantite) {
+		super();
+		this.id = id;
+		this.nom = nom;
+		this.prix = prix;
+		this.quantite = quantite;
+	}
+    public Produit() {}
+
+	private long id;
     private String nom;
     private double prix;
     private int quantite;
