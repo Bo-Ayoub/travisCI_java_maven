@@ -155,15 +155,46 @@ public class ProduitServiceTest {
         assertTrue(produitService.produitExiste(1));
         assertTrue(produitService.produitExiste(2));
     }
-    
-    
-    
+    @Test
+    public void testMettreAjourProduit() {
+        Produit p1 = new Produit(1L, "Voitre", 20.0, 10);
+        produitService.ajouterProduit(p1);
 
-    
-    
-    
-    
-    
-    
+        Produit updatedP1 = new Produit(1L, "nouvelle Voiture", 25.0, 15);
+        produitService.mettreAjourProduit(updatedP1);
 
+        Produit retrievedProduct = produitService.trouverProduitParId(1L);
+        assertNotNull(retrievedProduct);
+        assertEquals("nouvelle Voiture", retrievedProduct.getNom());
+        assertEquals(25.0, retrievedProduct.getPrix(), 0.001);
+        assertEquals(15, retrievedProduct.getQuantite());
+    }
+    
+    @Test
+    public void testMettreAjourProduitInexistant() {
+        Produit updatedP1 = new Produit(1L, "velo", 25.0, 15);
+        try {
+            produitService.mettreAjourProduit(updatedP1);
+        } catch (IllegalArgumentException e) {
+            assertEquals("Produit non trouvé avec l'ID : " + updatedP1.getId(), e.getMessage());
+        }
+    }
+    
+    @Test
+    public void testSupprimerProduitParId() {
+        Produit p1 = new Produit(1L, "Car", 20.0, 10);
+        produitService.ajouterProduit(p1);
+
+        produitService.deleteProduit(1L);
+        assertEquals(0, produitService.getAllProduct().size());
+
+        try {
+            Produit p2=produitService.trouverProduitParId(1L);
+        } catch (IllegalArgumentException e) {
+            assertEquals("Produit non trouvé avec l'ID : " + p1.getId(), e.getMessage());
+        }
+    }
+    
 }
+    
+  
