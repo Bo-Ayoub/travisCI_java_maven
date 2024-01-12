@@ -42,6 +42,22 @@ public class ProduitService {
         throw new IllegalArgumentException("Produit non trouvé avec l'ID : " + id);
 
     }
+    
+    //update 
+    public void mettreAjourProduit(Produit _produit) {
+        Produit produit = trouverProduitParId(_produit.getId());
+        if (produit == null) {
+            throw new IllegalArgumentException("product non trouvé");
+        }
+
+        if (_produit.getPrix() < 0 || _produit.getQuantite() < 0) {
+            throw new IllegalArgumentException("Le prix et la quantité doivent être positifs.");
+        }
+
+        produit.setNom(_produit.getNom());
+        produit.setPrix(_produit.getPrix());
+        produit.setQuantite(_produit.getQuantite());
+    }
 
   
 }
