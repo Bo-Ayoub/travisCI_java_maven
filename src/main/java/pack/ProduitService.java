@@ -4,11 +4,13 @@ import java.util.List;
 
 public class ProduitService {
     private List<Produit> produits;
+    
 
     public ProduitService() {
         this.produits = new ArrayList<>();
     }
 
+    
     // Create
     public void ajouterProduit(Produit produit) {
         if (!produitExiste(produit.getId()) && !nomProduitExiste(produit.getNom())) {
@@ -22,11 +24,11 @@ public class ProduitService {
         }
     }
 
-    private boolean produitExiste(long id) {
+    public boolean produitExiste(long id) {
         return produits.stream().anyMatch(produit -> produit.getId() == id);
     }
 
-    private boolean nomProduitExiste(String nom) {
+    public boolean nomProduitExiste(String nom) {
         return produits.stream().anyMatch(produit -> produit.getNom().equals(nom));
     }
     
