@@ -58,6 +58,18 @@ public class ProduitService {
         produit.setPrix(_produit.getPrix());
         produit.setQuantite(_produit.getQuantite());
     }
+    //delete
+    public void deleteProduit(Long id) {
+    	Produit produit;
+        for (Produit _produit : produits) {
+            if (produit.getId()==id) {
+            	produit=_produit;
+                break;
+            }
+        }
+        produits.remove(produit); 
+
+    }
 
   
 }
